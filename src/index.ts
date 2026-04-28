@@ -6,10 +6,12 @@ import { startBot, getStatus } from "./bot";
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  if (req.url === "/status") {
+  const path = (req.url || "/").split("?")[0].replace(/\/$/, "") || "/";
+
+  if (path === "/status") {
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify(getStatus()));
-  } else if (req.url === "/qr") {
+  } else if (path === "/qr") {
     const { connected, qr } = getStatus();
     res.setHeader("Content-Type", "text/html");
     if (connected) {
