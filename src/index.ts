@@ -1,9 +1,10 @@
 import "dotenv/config";
 import * as http from "http";
+import QRCode from "qrcode";
 import { startBot, getStatus } from "./bot";
 
 // Simple HTTP server so admin dashboard can check QR + connection status
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const path = (req.url || "/").split("?")[0].replace(/\/$/, "") || "/";
@@ -20,20 +21,14 @@ const server = http.createServer((req, res) => {
         <p>De bot is actief. Geen QR code nodig.</p>
       </body></html>`);
     } else if (qr) {
-      res.end(`<!DOCTYPE html><html><head><title>Scan QR</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-        </head><body style="font-family:sans-serif;text-align:center;padding:60px">
+      const imgSrc = await QRCode.toDataURL(qr, { width: 400, margin: 2 });
+      res.end(`<!DOCTYPE html><html><head><title>Scan QR</title></head>
+        <body style="font-family:sans-serif;text-align:center;padding:60px">
         <h2>📱 Scan met WhatsApp</h2>
         <p>WhatsApp → Instellingen → Gekoppelde apparaten → Apparaat koppelen</p>
-        <div id="qr" style="display:inline-block;margin:30px"></div>
+        <img src="${imgSrc}" style="margin:30px;border-radius:12px" />
         <p><small>Pagina vernieuwt automatisch elke 20 seconden</small></p>
-        <script>
-          new QRCode(document.getElementById("qr"), {
-            text: ${JSON.stringify(qr)},
-            width: 300, height: 300
-          });
-          setTimeout(() => location.reload(), 20000);
-        </script>
+        <script>setTimeout(() => location.reload(), 20000);</script>
       </body></html>`);
     } else {
       res.end(`<!DOCTYPE html><html><body style="font-family:sans-serif;text-align:center;padding:60px">
