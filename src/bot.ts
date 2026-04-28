@@ -2,8 +2,6 @@ import "dotenv/config";
 import makeWASocket, {
   useMultiFileAuthState,
   DisconnectReason,
-  fetchLatestBaileysVersion,
-  makeCacheableSignalKeyStore,
   Browsers,
 } from "@whiskeysockets/baileys";
 import { Boom } from "@hapi/boom";
@@ -21,14 +19,9 @@ export function getStatus() {
 
 export async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState("sessions");
-  const { version } = await fetchLatestBaileysVersion();
 
   const sock = makeWASocket({
-    version,
-    auth: {
-      creds: state.creds,
-      keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" })),
-    },
+    auth: state,
     logger: pino({ level: "silent" }),
     browser: Browsers.macOS("Chrome"),
   });
