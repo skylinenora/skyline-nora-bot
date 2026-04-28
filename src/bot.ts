@@ -4,6 +4,7 @@ import makeWASocket, {
   DisconnectReason,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
+  Browsers,
 } from "@whiskeysockets/baileys";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
@@ -29,7 +30,7 @@ export async function startBot() {
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" })),
     },
     logger: pino({ level: "silent" }),
-    browser: ["Skyline Nora", "Chrome", "1.0.0"],
+    browser: Browsers.macOS("Chrome"),
   });
 
   sock.ev.on("creds.update", saveCreds);
