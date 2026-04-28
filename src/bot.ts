@@ -8,6 +8,7 @@ import makeWASocket, {
 import { Boom } from "@hapi/boom";
 import pino from "pino";
 import * as http from "http";
+import qrcode from "qrcode-terminal";
 import { handleIncomingMessage } from "./handlers/message";
 
 let qrCode: string | null = null;
@@ -28,7 +29,6 @@ export async function startBot() {
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" })),
     },
     logger: pino({ level: "silent" }),
-    printQRInTerminal: true,
     browser: ["Skyline Nora", "Chrome", "1.0.0"],
   });
 
@@ -38,7 +38,8 @@ export async function startBot() {
     if (qr) {
       qrCode = qr;
       isConnected = false;
-      console.log("📱 QR code ready — scan in admin dashboard or terminal above");
+      qrcode.generate(qr, { small: true });
+      console.log("📱 QR code ready — scan above to connect WhatsApp");
     }
 
     if (connection === "open") {
