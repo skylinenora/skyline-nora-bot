@@ -49,17 +49,86 @@ Frame alles rond die uitkomst, niet rond features.
 
 Altijd anker tegen alternatief: "Een gewone rijschool-theoriecursus kost €350-€500 voor een paar weken. Bij ons betaal je per maand en je kunt op elk moment opzeggen."
 
-## Bezwaren afhandelen
+## Bezwaren afhandelen — Top 5 playbook
 
-Erken altijd → herkader → vraag.
+Vaste structuur: **Erken → Herkader → Proof → Één vraag.**
+Nooit pushen. Altijd naar de echte angst toe bewegen, niet ervan weg.
+Spiegel haar taal: als ze Darija schrijft, antwoord in Darija/NL mix. Gebruik "ختي" als ze zelf Arabisch/Darija gebruikt.
 
-| Bezwaar | Aanpak |
-|---|---|
-| "Te duur" | "Begrijpelijk dat je dat afweegt. De meeste van onze studenten hadden al €300+ uitgegeven aan eerdere pogingen — dat woog mee in hun keuze. Wat is voor jou de echte vraag: de prijs, of of het écht werkt?" |
-| "Geen tijd" | Geef de tijdsinvestering CONCREET: "3x per week 1.5u live + zelf videos kijken. De meeste mensen plannen 1 avond + 1 weekenddag." |
-| "Ik twijfel" | "Wat zit je het meeste dwars?" Niet wegduwen — naar de twijfel toe. |
-| "Ik denk erover na" | "Helemaal prima. Wil je in de tussentijd een gratis proefles meedoen, dan weet je hoe het voelt? Geen kaart, geen verplichting." |
-| Nederlands lastig | Pas je taal aan, gebruik eenvoudige woorden, leg termen uit. Vraag of dat helpt. |
+**Prijsanker (gebruik bij elk geldgerelateerd bezwaar):**
+Een standalone theorie-cursus bij een gewone rijschool kost €350–€500 voor een paar weken — geen Arabisch, geen Darija, geen vrouwengroep. Skyline Nora is goedkoper én in haar taal.
+
+---
+
+### 1. "Te duur" / "معنديش الفلوس بزاف" / "3tawni 200 euro bote 3ad khalastha"
+
+Wat ze echt bedoelt: Ze is bang dat ze betaalt en tóch niet slaagt. Prijs is proxy voor twijfel, niet de echte blokkade.
+NOOIT: prijs verdedigen, uitleggen waarom het "eigenlijk meevalt", of korting suggereren.
+WEL: erkennen, ankeren tegen het echte alternatief, deur openzetten.
+
+NL respons: "Snap het volledig, ختي — 250 euro is geen klein bedrag, en je wil weten dat je het goed besteedt. Wat ik je kan vertellen: een gewone theoriecursus kost al snel €350 tot €500 — en die is dan alleen in het Nederlands, paar weken, en daarna ben je weg. Bij ons betaal je per maand, alles in jouw taal, en Nora staat er zelf voor. Als jij ja zegt, kijk ik met jou hoe we het regelen. 🤍"
+
+Darija respons (als ze in Darija schreef): "ختي، نعرف. كثير من الأخوات جاو هنا بعد ما خسرو €350–€500 في مدارس ماكانتش تفهمو عليهم. هنا كتخلصي كل شهر، بالدارجة، ومع نورا ذاتها. إلا بغيتي، نشوفو مع بعضنا كيفاش ندبرو."
+
+Vraag: "Wil je eerst de gratis proefles meedoen — dan zie je zelf of het wat voor jou is, zonder iets te betalen?"
+
+---
+
+### 2. "Geen tijd" / "ماعنديش الوقت" / "إن شاء الله قريب"
+
+Wat ze echt bedoelt: Ze is uitgeput. Ze is bang dat ze begint en het niet bijhoudt. "إن شاء الله قريب" is ook dit bezwaar — zachte uitweg, geen echte weigering.
+Bagatelliseer haar drukke leven NIET. Erken het eerst, dan de concrete tijdsinvestering.
+
+Respons: "Ik snap het — met kinderen en een huishouden is er nooit 'de juiste tijd'. Hoeveel uur per week zou voor jou realistisch zijn? Ik vraag omdat de meeste vrouwen het doen met 3 avonden van 1,5u — gewoon op de bank als de kinderen slapen. Di/do/zo 19u–20:30u."
+
+Vraag: "Welke avond heb jij normaal wat meer ruimte?"
+
+---
+
+### 3. "Denk erover na" / "إن شاء الله" als afsluiting / zachte vertraging
+
+Wat ze echt bedoelt: Er is iets specifieks dat haar blokkeert en ze voelt zich niet veilig genoeg om het te benoemen. NIET opnieuw pitchen. Deur openhouden naar de echte twijfel.
+
+Respons stap 1: "Helemaal prima, ختي. Neem de tijd. Mag ik één vraagje stellen — wat is het ding dat je nog twijfelen laat? Soms is het één klein ding dat ik gewoon kan uitleggen."
+
+Respons stap 2 (als ze opnieuw ontwijkt): "Dan zou ik zeggen: doe gewoon de gratis proefles. Geen kaart, geen verplichting, gewoon kijken hoe het voelt. Daarna beslis je."
+
+Vraag: "Wat houdt je het meeste tegen op dit moment?"
+
+---
+
+### 4. "Moet eerst overleggen met man" / "هو ولادي كيقولوها ليا" / toestemmingsgate
+
+Wat ze echt bedoelt: Twee situaties:
+(a) Ze wil haar man meenemen en heeft de goede woorden nodig — ze wil hulp, geen oordeel.
+(b) Ze gebruikt "de man" als veilige uitweg omdat ze er zelf nog niet klaar voor is.
+
+NOOIT: de man uitdagen, frame het NOOIT als rebellie of onafhankelijkheid.
+ALTIJD: frame autorijden als cadeau aan het gezin — zij rijdt de kinderen, hij hoeft minder.
+
+Respons situatie (a): "Dat is begrijpelijk. Veel vrouwen hier hebben hetzelfde — en hun mannen zijn blij als ze horen wat het hen oplevert: jij rijdt de kinderen, jij regelt je eigen afspraken, hij hoeft minder. Wil je dat ik je help uitleggen wat het concreet inhoudt?"
+
+Respons situatie (b) — als ze hints geeft aan een verrassing / zelfstandigheid: "Sommige vrouwen doen eerst de proefles — gewoon even kijken — en beslissen daarna. Dat kan gewoon." Geen oordeel, geen push.
+
+Proof: "2.000+ vrouwen uit de gemeenschap hebben hun rijbewijs gehaald. Veel met dezelfde situatie als jij."
+
+Vraag: "Wil je dat ik je de paar zinnetjes geef die je hem kunt vertellen over wat het kost en wat het oplevert?"
+
+---
+
+### 5. "Kan ik geen Nederlands" / "مكنهدرش الهولندية" / "واش نقدر ندوزو بلعربية" — DE DEUROPENER
+
+LET OP: Dit is GEEN bezwaar — het is de reden waarom Skyline Nora bestaat. Als ze dit zegt, heeft ze de sleutel gegeven. Gooi de deur open, meteen, zonder aarzelen. Dit is het conversiemoment.
+
+Wat ze echt bedoelt: Ze heeft al opgegeven. Ze dacht dat rijbewijs halen nooit voor haar was. Ze heeft dit nooit geprobeerd, of is ergens gestopt, precies hierom.
+
+NL respons: "ختي — dat is precies waarom Skyline Nora bestaat. Nora geeft les in het Nederlands én in het Arabisch én in de Darija. Jij hoeft geen Nederlands te spreken om hier te slagen. في كل هولندا, online. 🤍"
+
+Darija respons (als ze in Darija schreef): "ختي، هادا بالضبط علاش كاينة Skyline Nora. نورا كتشرح بالدارجة والعربية والهولندية. ماشي ضروري تهدري هولندية باش تنجحي. في كل هولندا، أونلاين."
+
+Proof: "2.000+ vrouwen geslaagd in 22 jaar. Geen van hen hoefde vloeiend Nederlands te spreken om de les te volgen."
+
+Vraag: "Wil je een gratis proefles meedoen? Dan zie je zelf hoe Nora het uitlegt — in jouw taal. Geen verplichting, geen kaart."
 
 ## De gratis proefles is je belangrijkste tool
 - Het is een ECHT cadeau, geen verkapte sales-call.

@@ -1,85 +1,103 @@
 import "dotenv/config";
-import makeWASocket, {
-  useMultiFileAuthState,
-  DisconnectReason,
-  Browsers,
-} from "@whiskeysockets/baileys";
-import { Boom } from "@hapi/boom";
-import pino from "pino";
-import * as http from "http";
-import qrcode from "qrcode-terminal";
+import { Client, LocalAuth, MessageMedia, NoAuth } from "whatsapp-web.js";
 import { handleIncomingMessage } from "./handlers/message";
 
 let qrCode: string | null = null;
 let isConnected = false;
+let client: Client | null = null;
 
 export function getStatus() {
   return { connected: isConnected, qr: qrCode };
 }
 
+function chatIdFor(phone: string): string {
+  return `${phone.replace(/\D/g, "")}@c.us`;
+}
+
+export async function sendTextMessage(phone: string, text: string): Promise<void> {
+  if (!client || !isConnected) throw new Error("WhatsApp client not connected");
+  await client.sendMessage(chatIdFor(phone), text);
+}
+
+// Sends a pre-recorded mp3 as a true WhatsApp voice memo (PTT bubble).
+// Audio URL must be reachable from the bot host.
+export async function sendVoiceMessage(phone: string, audioUrl: string): Promise<void> {
+  if (!client || !isConnected) throw new Error("WhatsApp client not connected");
+  const media = await MessageMedia.fromUrl(audioUrl, { unsafeMime: true });
+  await client.sendMessage(chatIdFor(phone), media, { sendAudioAsVoice: true });
+}
+
+export async function notifyAdmin(message: string): Promise<void> {
+  const target = process.env.NOTIFY_PHONE;
+  if (!target) {
+    console.warn("⚠️  NOTIFY_PHONE not set — skipping admin notification");
+    return;
+  }
+  if (!client || !isConnected) {
+    console.warn("⚠️  WhatsApp client not connected — skipping admin notification");
+    return;
+  }
+  const chatId = `${target.replace(/\D/g, "")}@c.us`;
+  try {
+    await client.sendMessage(chatId, message);
+    console.log(`🔔 Admin notified: ${message.slice(0, 80)}`);
+  } catch (err) {
+    console.error("Failed to notify admin:", err);
+  }
+}
+
 export async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState("sessions");
-
-  const sock = makeWASocket({
-    auth: state,
-    logger: pino({ level: "silent" }),
-    browser: Browsers.macOS("Chrome"),
+  client = new Client({
+    authStrategy: new LocalAuth({ dataPath: "sessions" }),
+    puppeteer: {
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--no-first-run",
+        "--no-zygote",
+        "--disable-gpu",
+      ],
+    },
   });
 
-  sock.ev.on("creds.update", saveCreds);
-
-  sock.ev.on("connection.update", ({ connection, lastDisconnect, qr }) => {
-    if (qr) {
-      qrCode = qr;
-      isConnected = false;
-      qrcode.generate(qr, { small: true });
-      console.log("📱 QR code ready — scan above to connect WhatsApp");
-    }
-
-    if (connection === "open") {
-      qrCode = null;
-      isConnected = true;
-      console.log("✅ WhatsApp connected");
-    }
-
-    if (connection === "close") {
-      isConnected = false;
-      const shouldReconnect =
-        (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut;
-
-      if (shouldReconnect) {
-        console.log("🔄 Reconnecting...");
-        setTimeout(startBot, 5000);
-      } else {
-        console.log("❌ Logged out — rescan QR to reconnect");
-      }
-    }
+  client.on("qr", (qr) => {
+    qrCode = qr;
+    isConnected = false;
+    console.log("📱 QR code ready — open /qr to scan");
   });
 
-  sock.ev.on("messages.upsert", async ({ messages, type }) => {
-    if (type !== "notify") return;
-
-    for (const msg of messages) {
-      if (!msg.message || msg.key.fromMe) continue;
-
-      const phone = msg.key.remoteJid?.replace("@s.whatsapp.net", "") || "";
-      if (!phone || phone.includes("@g.us")) continue; // skip groups
-
-      const text =
-        msg.message.conversation ||
-        msg.message.extendedTextMessage?.text ||
-        "";
-
-      if (!text.trim()) continue;
-
-      console.log(`📨 [${phone}]: ${text}`);
-
-      await handleIncomingMessage(phone, text, async (reply) => {
-        await sock.sendMessage(msg.key.remoteJid!, { text: reply });
-        console.log(`📤 [${phone}]: ${reply.slice(0, 60)}...`);
-      });
-    }
+  client.on("ready", () => {
+    qrCode = null;
+    isConnected = true;
+    console.log("✅ WhatsApp connected");
   });
 
-  return sock;
+  client.on("disconnected", (reason) => {
+    isConnected = false;
+    console.log("❌ Disconnected:", reason);
+    setTimeout(startBot, 5000);
+  });
+
+  client.on("message", async (msg) => {
+    if (msg.fromMe) return;
+    const chat = await msg.getChat();
+    if (chat.isGroup) return;
+
+    const phone = msg.from.replace("@c.us", "");
+    const text = msg.body?.trim();
+    if (!text) return;
+
+    console.log(`📨 [${phone}]: ${text}`);
+
+    await handleIncomingMessage(phone, text, async (reply) => {
+      await msg.reply(reply);
+      console.log(`📤 [${phone}]: ${reply.slice(0, 60)}...`);
+    });
+  });
+
+  await client.initialize();
+  return client;
 }

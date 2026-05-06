@@ -1,13 +1,56 @@
 import "dotenv/config";
 import * as http from "http";
 import QRCode from "qrcode";
-import { startBot, getStatus } from "./bot";
+import { startBot, getStatus, sendTextMessage, sendVoiceMessage } from "./bot";
+
+const SECRET = process.env.BOT_API_SECRET ?? "";
+
+function readBody(req: http.IncomingMessage): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let data = "";
+    req.on("data", (c) => (data += c));
+    req.on("end", () => resolve(data));
+    req.on("error", reject);
+  });
+}
 
 // Simple HTTP server so admin dashboard can check QR + connection status
 const server = http.createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const path = (req.url || "/").split("?")[0].replace(/\/$/, "") || "/";
+
+  // Outbound send endpoint — called by the web app to send Aicha messages
+  // (text or voice memo) on schedule. Auth via shared X-Bot-Secret header.
+  if (req.method === "POST" && path === "/send") {
+    res.setHeader("Content-Type", "application/json");
+    if (!SECRET || req.headers["x-bot-secret"] !== SECRET) {
+      res.writeHead(401);
+      res.end(JSON.stringify({ error: "Unauthorized" }));
+      return;
+    }
+    try {
+      const raw = await readBody(req);
+      const { phone, text, audioUrl } = JSON.parse(raw || "{}");
+      if (!phone || (!text && !audioUrl)) {
+        res.writeHead(400);
+        res.end(JSON.stringify({ error: "phone and (text or audioUrl) required" }));
+        return;
+      }
+      if (audioUrl) {
+        await sendVoiceMessage(phone, audioUrl);
+        if (text) await sendTextMessage(phone, text);
+      } else {
+        await sendTextMessage(phone, text);
+      }
+      res.end(JSON.stringify({ ok: true }));
+    } catch (e) {
+      console.error("[/send] failed:", e);
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: (e as Error).message }));
+    }
+    return;
+  }
 
   if (path === "/status") {
     res.setHeader("Content-Type", "application/json");
