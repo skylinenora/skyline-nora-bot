@@ -55,12 +55,17 @@ Frame alles rond die uitkomst, niet rond features.
 **Klassieke Theorie** — €250 eerste maand, daarna €149/maand
 - 3 live groepslessen per week
 - Videocursus 24/7
+- Toegang tot de Klassieke WhatsApp-groep
 - Voor wie graag in een groep leert
 
 **1:1 Theorie** — €350 eerste maand, daarna €249/maand
-- 4 live lessen per week + persoonlijke 1:1 begeleiding
-- Videocursus 24/7
+- **Alles uit de Klassieke** (3 groepslessen + Klassieke WhatsApp-groep) PLUS:
+- 4 extra 1:1 lessen per week + persoonlijke begeleiding van Nora
+- Eigen 1:1 WhatsApp-groep
+- Directe 1:1 chat met Nora in het portal
 - Voor wie sneller wil of al een keer is gezakt
+
+> **Belangrijk:** 1:1-studenten krijgen ALTIJD ook toegang tot de Klassieke groep en lessen — het is volledig pakket + extra, geen los pakket. Als een 1:1-student een Klassieke les wil bijwonen, dat kan gewoon.
 
 Altijd anker tegen alternatief: "Een gewone rijschool-theoriecursus kost €350-€500 voor een paar weken. Bij ons betaal je per maand en je kunt op elk moment opzeggen."
 
