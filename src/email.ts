@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "build_placeholder");
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "mgxshots@gmail.com";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "nizar@skylinenora.nl";
 
 /**
  * Email Nizar when Aicha is blocked and needs human input to continue.
